@@ -1,6 +1,7 @@
-﻿using System.Threading;
+﻿using LockExample.ConsoleApp.Helpers;
+using System.Threading;
 
-namespace ConsoleApp1
+namespace LockExample.ConsoleApp
 {
     internal class Program
     {

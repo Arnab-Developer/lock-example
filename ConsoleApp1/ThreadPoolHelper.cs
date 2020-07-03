@@ -1,6 +1,7 @@
-﻿using System.Threading;
+﻿using LockExample.ConsoleApp.Utilities;
+using System.Threading;
 
-namespace ConsoleApp1
+namespace LockExample.ConsoleApp.Helpers
 {
     internal class ThreadPoolHelper
     {
@@ -14,7 +15,7 @@ namespace ConsoleApp1
         public void ThreadPoolCallback(object? state)
         {
             if (state == null) return;
-            StateHelper.CurrentInstance.SetObjectToCacheWithLock((int)state);
+            SomeUtility.CurrentInstance.PerformSomeOperation((int)state);
             _doneEvent.Set();
         }
     }
