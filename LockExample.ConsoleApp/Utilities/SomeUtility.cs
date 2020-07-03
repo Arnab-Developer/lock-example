@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace LockExample.ConsoleApp.Utilities
 {
     internal class SomeUtility
     {
-        private int Name { get; set; }
+        private int State { get; set; }
 
         private SomeUtility()
         {
-            Name = 0;
+            State = 0;
         }
 
         public static SomeUtility CurrentInstance
@@ -31,11 +31,11 @@ namespace LockExample.ConsoleApp.Utilities
         {
             lock (this)
             {
-                Name = state;
+                State = state;
 
                 Thread.Sleep(1000);
 
-                if (Name == state)
+                if (State == state)
                 {
                     Console.WriteLine("value has not been changed by other threads.");
                 }
