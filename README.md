@@ -2,45 +2,51 @@
 
 I have a simple utility class which is singleton.
 
-    internal class SomeUtility
+    using System;
+    using System.Threading;
+
+    namespace LockExample.ConsoleApp.Utilities
     {
-        private int State { get; set; }
-
-        private SomeUtility()
+        internal class SomeUtility
         {
-            State = 0;
-        }
+            private int State { get; set; }
 
-        public static SomeUtility CurrentInstance
-        {
-            get { return SingletonCreator.Instance; }
-        }
-
-        private class SingletonCreator
-        {
-            internal static SomeUtility Instance { get; }
-
-            static SingletonCreator()
+            private SomeUtility()
             {
-                Instance = new SomeUtility();
+                State = 0;
             }
-        }
 
-        public void PerformSomeOperation(int state)
-        {
-            lock (this)
+            public static SomeUtility CurrentInstance
             {
-                State = state;
+                get { return SingletonCreator.Instance; }
+            }
 
-                Thread.Sleep(1000);
+            private class SingletonCreator
+            {
+                internal static SomeUtility Instance { get; }
 
-                if (State == state)
+                static SingletonCreator()
                 {
-                    Console.WriteLine("value has not been changed by other threads.");
+                    Instance = new SomeUtility();
                 }
-                else
+            }
+
+            public void PerformSomeOperation(int state)
+            {
+                lock (this)
                 {
-                    Console.WriteLine("value has been changed by other threads.");
+                    State = state;
+
+                    Thread.Sleep(1000);
+
+                    if (State == state)
+                    {
+                        Console.WriteLine("value has not been changed by other threads.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("value has been changed by other threads.");
+                    }
                 }
             }
         }
