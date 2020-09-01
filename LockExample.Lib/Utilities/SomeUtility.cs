@@ -1,7 +1,7 @@
-using System;
+using LockExample.Lib.Models;
 using System.Threading;
 
-namespace LockExample.ConsoleApp.Utilities
+namespace LockExample.Lib.Utilities
 {
     internal class SomeUtility
     {
@@ -27,23 +27,21 @@ namespace LockExample.ConsoleApp.Utilities
             }
         }
 
-        public void PerformSomeOperation(int state)
+        public void PerformSomeOperationWithLock(InputOutputValue inputOutputValues)
         {
             lock (this)
             {
-                State = state;
-
+                State = inputOutputValues.Input;
                 Thread.Sleep(1000);
-
-                if (State == state)
-                {
-                    Console.WriteLine("value has not been changed by other threads.");
-                }
-                else
-                {
-                    Console.WriteLine("value has been changed by other threads.");
-                }
+                inputOutputValues.Output = State;
             }
+        }
+
+        public void PerformSomeOperationWithNoLock(InputOutputValue inputOutputValues)
+        {
+            State = inputOutputValues.Input;
+            Thread.Sleep(1000);
+            inputOutputValues.Output = State;
         }
     }
 }
