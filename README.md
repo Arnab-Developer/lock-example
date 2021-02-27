@@ -1,6 +1,6 @@
 # Lock example in multithreading environment.
 
-[![build](https://github.com/Arnab-Developer/lock-example/actions/workflows/ci.yml/badge.svg)](https://github.com/Arnab-Developer/lock-example/actions/workflows/ci.yml)
+[![CI](https://github.com/Arnab-Developer/lock-example/actions/workflows/ci.yml/badge.svg)](https://github.com/Arnab-Developer/lock-example/actions/workflows/ci.yml)
 
 I have a simple utility class which is singleton.
 
